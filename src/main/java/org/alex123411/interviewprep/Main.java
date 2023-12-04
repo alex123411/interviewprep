@@ -122,10 +122,25 @@ public class Main {
 //
 //        System.out.println(SolutionI.carFleet(12, nums, nums2));
 
-        int[] nums = new int[]{2,4};
-        int[] nums2 = new int[]{1,1};
-        int[] nums3 = new int[]{2,1,5,6,2,3};
+//        int[] nums = new int[]{2,4};
+//        int[] nums2 = new int[]{1,1};
+//        int[] nums3 = new int[]{2,1,5,6,2,3};
+//
+//        System.out.println(SolutionI.largestRectangleArea(nums2));
 
-        System.out.println(SolutionI.largestRectangleArea(nums2));
+//        int[] nums = new int[]{30,11,23,4,20};
+//        int[] nums2 = new int[]{3,6,7,11};
+//        int[] nums3 = new int[]{805306368,805306368,805306368};
+//
+//        System.out.println(SolutionI.minEatingSpeed(nums3, 1000000000));
+
+
+//        TimeMap map = new TimeMap();
+//        map.set("foo", "bar", 1);
+//        System.out.println(map.get("foo", 1));
+//        System.out.println(map.get("foo", 3));
+//        map.set("foo", "bar2", 4);
+//        System.out.println(map.get("foo", 4));
+//        System.out.println(map.get("foo", 5));
     }
 }

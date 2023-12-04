@@ -541,6 +541,32 @@ public class SolutionI {
     // 25. Koko Eating Bananas
     // https://leetcode.com/problems/koko-eating-bananas/
     public static int minEatingSpeed(int[] piles, int h) {
-        return 1;
+        int max = piles[0];
+
+        // Iterate through the array to find the maximum value
+        for (int i = 1; i < piles.length; i++) {
+            if (piles[i] > max) {
+                max = piles[i];
+            }
+        }
+
+        int r = max;
+        int l = 1;
+        int res = r;
+
+        while (l <= r) {
+            int k = (l + r) / 2;
+            int i = 0;
+            for (double pile : piles) {
+                i += Math.ceil(pile / k);
+            }
+            if (i <= h) {
+                res = Math.min(k, res);
+                r = k - 1;
+            }
+            if (i > h) l = k + 1;
+        }
+
+        return res;
     }
 }

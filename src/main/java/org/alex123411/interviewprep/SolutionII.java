@@ -1,8 +1,6 @@
 package org.alex123411.interviewprep;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class SolutionII {
     // 23. Binary Search
@@ -21,9 +19,59 @@ public class SolutionII {
         return -1;
     }
 
+    // 26. Time Based Key Value Store
+    // https://leetcode.com/problems/time-based-key-value-store/
+    class Pair {
+        int timestamp;
+        String val;
+
+        Pair(int timestamp, String val) {
+            this.timestamp = timestamp;
+            this.val = val;
+        }
+    }
+
+    class TimeMap {
+
+        Map<String, ArrayList<Pair>> map;
+
+        public TimeMap() {
+            map = new HashMap<>();
+        }
+
+        public void set(String key, String value, int timestamp) {
+            if (!map.containsKey(key)) {
+                ArrayList<Pair> list = new ArrayList<>();
+                list.add(new Pair(timestamp, value));
+                map.put(key, list);
+            } else map.get(key).add(new Pair(timestamp, value));
+        }
+
+        public String get(String key, int timestamp) {
+            if (!map.containsKey(key)) return "";
+
+            ArrayList<Pair> list = map.get(key);
+
+            int l = 0, r = list.size() - 1;
+            int mid;
+            String res = "";
+            while (l <= r) {
+                mid = (l + r) / 2;
+                Pair temp = list.get(mid);
+
+                if (temp.timestamp == timestamp) return temp.val;
+                if (timestamp > list.get(l).timestamp) res = list.get(l).val;
+                if (temp.timestamp < timestamp) l = mid + 1;
+                if (temp.timestamp > timestamp) r = mid - 1;
+            }
+
+            return res;
+        }
+    }
+
     // 17. Min Stack
     // https://leetcode.com/problems/min-stack/
-    static class MinStack {
+    class MinStack {
         private final List<Integer> mins;
         private final List<Integer> stack;
 
