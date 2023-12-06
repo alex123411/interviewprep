@@ -569,4 +569,26 @@ public class SolutionI {
 
         return res;
     }
+
+    // Sliding Window
+    // 26.
+    public static int lengthOfLongestSubstring(String s) {
+        if(s.length() == 1) return 1;
+        int res = 0, l = 0, r = 0;
+        Map<Character, Integer> map = new HashMap<>();
+
+        char[] arr = s.toCharArray();
+
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];
+            r = i;
+            if (map.containsKey(c) && map.get(c) >= l) {
+                l = map.get(c);
+            }
+            map.put(c, i);
+            res = Math.max(res, r - l);
+        }
+
+        return res;
+    }
 }
