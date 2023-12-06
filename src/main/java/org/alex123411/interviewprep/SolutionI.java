@@ -571,9 +571,9 @@ public class SolutionI {
     }
 
     // Sliding Window
-    // 26.
+    // 26. https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
     public static int lengthOfLongestSubstring(String s) {
-        if(s.length() == 1) return 1;
+        if (s.length() == 1) return 1;
         int res = 0, l = 0, r = 0;
         Map<Character, Integer> map = new HashMap<>();
 
@@ -590,5 +590,50 @@ public class SolutionI {
         }
 
         return res;
+    }
+
+    // 27. Longest Repeating Character Replacement
+    // https://leetcode.com/problems/longest-repeating-character-replacement/
+    public static int characterReplacement(String s, int k) {
+        int[] counts = new int[26];
+        char[] arr = s.toCharArray();
+        int l = 0, max = 0;
+        // shifting right until the length of the window - most frequent character <= k
+        int maxCount = 1;
+
+        for (int i = 0; i < s.length(); i++) {
+            counts[arr[i] - 'A']++;
+            maxCount = Math.max(maxCount, counts[arr[i] - 'A']);
+
+            while ((i - l + 1) - maxCount > k) {
+                counts[arr[l] - 'A']--;
+                l++;
+            }
+
+            max = Math.max(max, i - l + 1);
+
+        }
+        return max;
+    }
+
+    // 28. Invert Binary Tree
+    // https://leetcode.com/problems/invert-binary-tree/
+    public static TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode left = root.left;
+        root.left = root.right;
+        root.right = left;
+        invertTree(root.left);
+        invertTree(root.right);
+        return root;
+    }
+
+    // 29. Maximum Depth of Binary Tree
+    // https://leetcode.com/problems/maximum-depth-of-binary-tree/
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        int maxLeft = maxDepth(root.left);
+        int maxRight = maxDepth(root.right);
+        return Math.max(maxLeft, maxRight) + 1;
     }
 }
