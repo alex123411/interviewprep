@@ -1,7 +1,5 @@
 package org.alex123411.interviewprep;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 
 public class SolutionI {
@@ -647,11 +645,12 @@ public class SolutionI {
         helper(root, diam);
         return diam[0];
     }
-    public int helper(TreeNode root, int[] diameter){
+
+    public int helper(TreeNode root, int[] diameter) {
         if (root == null) return 0;
         int maxLeft = helper(root.left, diameter);
         int maxRight = helper(root.right, diameter);
-        diameter[0] = Math.max(diameter[0], maxLeft+maxRight);
+        diameter[0] = Math.max(diameter[0], maxLeft + maxRight);
         return Math.max(maxLeft, maxRight) + 1;
     }
 
@@ -662,11 +661,22 @@ public class SolutionI {
         helperDFS(root, res);
         return res[0] == 0;
     }
-    public int helperDFS(TreeNode root, int[] res){
+
+    public int helperDFS(TreeNode root, int[] res) {
         if (root == null) return 0;
         int maxLeft = helperDFS(root.left, res);
         int maxRight = helperDFS(root.right, res);
-        if(Math.abs(maxLeft - maxRight) > 1) res[0] = -1;
+        if (Math.abs(maxLeft - maxRight) > 1) res[0] = -1;
         return Math.max(maxLeft, maxRight) + 1;
+    }
+
+    // 32. Same Tree
+    // https://leetcode.com/problems/same-tree/
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        else if (p == null || q == null) return false;
+        if (p.val != q.val) return false;
+
+        return (isSameTree(p.right, q.right) && isSameTree(p.left, q.left));
     }
 }
