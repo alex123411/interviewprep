@@ -1,5 +1,7 @@
 package org.alex123411.interviewprep;
 
+import com.sun.source.tree.Tree;
+
 import java.util.*;
 
 public class SolutionI {
@@ -634,6 +636,37 @@ public class SolutionI {
         if (root == null) return 0;
         int maxLeft = maxDepth(root.left);
         int maxRight = maxDepth(root.right);
+        return Math.max(maxLeft, maxRight) + 1;
+    }
+
+    // 30. Diameter of Binary Tree
+    // https://leetcode.com/problems/diameter-of-binary-tree/
+    public int diameterOfBinaryTree(TreeNode root) {
+        // Need to find deepest left + deepest right
+        int[] diam = new int[1];
+        helper(root, diam);
+        return diam[0];
+    }
+    public int helper(TreeNode root, int[] diameter){
+        if (root == null) return 0;
+        int maxLeft = helper(root.left, diameter);
+        int maxRight = helper(root.right, diameter);
+        diameter[0] = Math.max(diameter[0], maxLeft+maxRight);
+        return Math.max(maxLeft, maxRight) + 1;
+    }
+
+    // 31. Balanced Binary Tree
+    // https://leetcode.com/problems/balanced-binary-tree/
+    public boolean isBalanced(TreeNode root) {
+        int[] res = new int[1];
+        helperDFS(root, res);
+        return res[0] == 0;
+    }
+    public int helperDFS(TreeNode root, int[] res){
+        if (root == null) return 0;
+        int maxLeft = helperDFS(root.left, res);
+        int maxRight = helperDFS(root.right, res);
+        if(Math.abs(maxLeft - maxRight) > 1) res[0] = -1;
         return Math.max(maxLeft, maxRight) + 1;
     }
 }
