@@ -630,7 +630,7 @@ public class SolutionI {
 
     // 29. Maximum Depth of Binary Tree
     // https://leetcode.com/problems/maximum-depth-of-binary-tree/
-    public int maxDepth(TreeNode root) {
+    public static int maxDepth(TreeNode root) {
         if (root == null) return 0;
         int maxLeft = maxDepth(root.left);
         int maxRight = maxDepth(root.right);
@@ -639,14 +639,14 @@ public class SolutionI {
 
     // 30. Diameter of Binary Tree
     // https://leetcode.com/problems/diameter-of-binary-tree/
-    public int diameterOfBinaryTree(TreeNode root) {
+    public static int diameterOfBinaryTree(TreeNode root) {
         // Need to find deepest left + deepest right
         int[] diam = new int[1];
         helper(root, diam);
         return diam[0];
     }
 
-    public int helper(TreeNode root, int[] diameter) {
+    public static int helper(TreeNode root, int[] diameter) {
         if (root == null) return 0;
         int maxLeft = helper(root.left, diameter);
         int maxRight = helper(root.right, diameter);
@@ -654,15 +654,7 @@ public class SolutionI {
         return Math.max(maxLeft, maxRight) + 1;
     }
 
-    // 31. Balanced Binary Tree
-    // https://leetcode.com/problems/balanced-binary-tree/
-    public boolean isBalanced(TreeNode root) {
-        int[] res = new int[1];
-        helperDFS(root, res);
-        return res[0] == 0;
-    }
-
-    public int helperDFS(TreeNode root, int[] res) {
+    public static int helperDFS(TreeNode root, int[] res) {
         if (root == null) return 0;
         int maxLeft = helperDFS(root.left, res);
         int maxRight = helperDFS(root.right, res);
@@ -670,13 +662,110 @@ public class SolutionI {
         return Math.max(maxLeft, maxRight) + 1;
     }
 
+    // 31. Balanced Binary Tree
+    // https://leetcode.com/problems/balanced-binary-tree/
+    public static boolean isBalanced(TreeNode root) {
+        int[] res = new int[1];
+        helperDFS(root, res);
+        return res[0] == 0;
+    }
+
     // 32. Same Tree
     // https://leetcode.com/problems/same-tree/
-    public boolean isSameTree(TreeNode p, TreeNode q) {
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;
         else if (p == null || q == null) return false;
         if (p.val != q.val) return false;
-
         return (isSameTree(p.right, q.right) && isSameTree(p.left, q.left));
+    }
+
+    // 33. Subtree of Another Tree
+    // https://leetcode.com/problems/subtree-of-another-tree/
+    public static boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if (root == null || subRoot == null) return false;
+        boolean res = false;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+            TreeNode current = q.poll();
+            if (current.val == subRoot.val && isSameTree(current, subRoot)) return true;
+            if (current.right != null) q.add(current.right);
+            if (current.left != null) q.add(current.left);
+        }
+
+        return res;
+    }
+
+    // 34. Lowest Common Ancestor of a Binary Search Tree
+    // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode temp = root;
+        while (temp != null) {
+            if (p.val > temp.val && q.val > temp.val) temp = temp.right;
+            else if (p.val < temp.val && q.val < temp.val) temp = temp.left;
+            else return temp;
+        }
+        return temp;
+    }
+
+    // 35. Binary Tree Level Order Traversal
+    // https://leetcode.com/problems/binary-tree-level-order-traversal/
+    public static List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>();
+
+            for (int i = 0; i < size; i++) {
+                TreeNode current = queue.poll();
+                if (current != null) {
+                    list.add(current.val);
+                    if (current.left != null) queue.add(current.left);
+                    if (current.right != null) queue.add(current.right);
+                }
+            }
+            res.add(list);
+        }
+
+        return res;
+    }
+
+    // 36. Binary Tree Right Side View
+    // https://leetcode.com/problems/binary-tree-right-side-view/
+    public static List<Integer> rightSideView(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        List<Integer> res = new ArrayList<>();
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            for (int i = 0; i < size; i++) {
+                TreeNode current = queue.poll();
+                if (current != null) {
+                    if (current.left != null) queue.add(current.left);
+                    if (current.right != null) queue.add(current.right);
+                    if (i == size - 1) res.add(current.val);
+                }
+            }
+        }
+
+        return res;
+    }
+
+    // 37. Count Good Nodes in Binary Tree
+    // https://leetcode.com/problems/count-good-nodes-in-binary-tree/
+    public int goodNodes(TreeNode root) {
+        if (root == null) return 0;
+        int res = 0;
+
+        return res;
     }
 }
