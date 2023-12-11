@@ -142,5 +142,15 @@ public class Main {
 //        map.set("foo", "bar2", 4);
 //        System.out.println(map.get("foo", 4));
 //        System.out.println(map.get("foo", 5));
+
+        int[] vals = new int[]{2, 7, 1, 3, -3, 10, 11, 10, 4};
+        TreeNode tree = new TreeNode(4);
+        for (int val : vals) tree.add(val);
+
+
+        System.out.println("\nDFS");
+        tree.printDFS(tree);
+        System.out.println("\nBFS");
+        tree.printBFS();
     }
 }
