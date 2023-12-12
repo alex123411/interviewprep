@@ -762,10 +762,168 @@ public class SolutionI {
 
     // 37. Count Good Nodes in Binary Tree
     // https://leetcode.com/problems/count-good-nodes-in-binary-tree/
-    public int goodNodes(TreeNode root) {
+    public static int goodNodes(TreeNode root) {
         if (root == null) return 0;
         int res = 0;
 
         return res;
+    }
+
+    // 38. Reverse Linked List
+    // https://leetcode.com/problems/reverse-linked-list/
+    public static ListNode reverseList(ListNode head) {
+        if (head == null) return null;
+
+        ListNode reversed = new ListNode(head.val);
+        while (head.next != null) {
+
+            ListNode temp = new ListNode(head.next.val);
+            temp.next = reversed;
+            reversed = temp;
+
+            head = head.next;
+        }
+        return reversed;
+    }
+
+    // 39. Merge Two Sorted Lists
+    // https://leetcode.com/problems/merge-two-sorted-lists/
+    public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if (list1 == null) return list2;
+        if (list2 == null) return list1;
+
+        ListNode temp = new ListNode();
+        ListNode res = temp;
+
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                temp.next = new ListNode(list1.val);
+                list1 = list1.next;
+            } else {
+                temp.next = new ListNode(list2.val);
+                list2 = list2.next;
+            }
+            temp = temp.next;
+        }
+
+        if (list1.next == null && list2.next != null) temp.next = list2;
+        if (list2.next == null && list1.next != null) temp.next = list1;
+
+        return res.next;
+    }
+
+    // 40. Reorder List
+    // https://leetcode.com/problems/reorder-list/
+    public static void reorderList(ListNode head) {
+        if (head == null) return;
+
+        ListNode reversed = reverseList(head);
+        ListNode copy = new ListNode(head.val);
+
+        int len = 1;
+
+        ListNode temp1 = copy;
+        ListNode temp2 = head.next;
+
+        while (temp2 != null) {
+            len++;
+            temp1.next = new ListNode(temp2.val);
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+
+        int i = 2;
+
+        ListNode temp3 = head;
+        copy = copy.next;
+        while (len != -1) {
+            if (i % 2 == 0) {
+                temp3.next = new ListNode(reversed.val);
+                reversed = reversed.next;
+                temp3 = temp3.next;
+            } else if (i % 2 == 1) {
+                temp3.next = new ListNode(copy.val);
+                copy = copy.next;
+                temp3 = temp3.next;
+            }
+            i++;
+            len--;
+        }
+    }
+
+    // 41. Remove Nth Node From End of List
+    // https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null) return null;
+        if (n == 1 && head.next == null) return null;
+
+        int i = 0;
+        int len = 0;
+
+        ListNode temp = head;
+        while (temp != null) {
+            len++;
+            temp = temp.next;
+        }
+        if (len - n == 0) return head.next;
+        temp = head;
+        while (temp != null) {
+            i++;
+            if (i == len - n) {
+                if (temp.next != null) {
+                    temp.next = temp.next.next;
+                }
+                break;
+            }
+            temp = temp.next;
+        }
+
+        return head;
+    }
+
+    // 42. Subsets
+    // https://leetcode.com/problems/subsets/
+    public static List<List<Integer>> subsets(int[] nums) {
+        List<Integer> temp = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        subsetsDFS(nums, 0, temp, res);
+        return res;
+    }
+
+    public static void subsetsDFS(int[] nums, int index, List<Integer> temp, List<List<Integer>> res) {
+        if (index >= nums.length) {
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+
+        temp.add(nums[index]);
+        subsetsDFS(nums, index + 1, temp, res);
+        temp.remove(temp.size() - 1);
+        subsetsDFS(nums, index + 1, temp, res);
+    }
+
+    // 43. Combination Sum
+    // https://leetcode.com/problems/combination-sum/
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer> temp = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        combinationSumDFS(candidates, target,0,0, temp, res);
+        return res;
+    }
+
+    public static void combinationSumDFS(int[] candidates, int target, int sum, int index, List<Integer> temp,
+                                         List<List<Integer>> res) {
+        if (sum == target) {
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+        if (sum > target) return;
+        if (index >= candidates.length) return;
+
+        temp.add(candidates[index]);
+        combinationSumDFS(candidates, target, sum + candidates[index], index, temp, res);
+
+        temp.remove(temp.size() - 1);
+        combinationSumDFS(candidates, target, sum, index + 1, temp, res);
     }
 }

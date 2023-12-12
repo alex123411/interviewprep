@@ -1,5 +1,7 @@
 package org.alex123411.interviewprep;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         //        ArrayAndString solution = new ArrayAndString();
@@ -143,14 +145,23 @@ public class Main {
 //        System.out.println(map.get("foo", 4));
 //        System.out.println(map.get("foo", 5));
 
-        int[] vals = new int[]{2, 7, 1, 3, -3, 10, 11, 10, 4};
-        TreeNode tree = new TreeNode(4);
-        for (int val : vals) tree.add(val);
+//        int[] vals = new int[]{2, 7, 1, 3, -3, 10, 11, 10, 4};
+//        TreeNode tree = new TreeNode(4);
+//        for (int val : vals) tree.add(val);
+//
+//
+//        System.out.println("\nDFS");
+//        tree.printDFS(tree);
+//        System.out.println("\nBFS");
+//        tree.printBFS();
 
+        int[] nums = new int[]{2, 3, 6, 7};
 
-        System.out.println("\nDFS");
-        tree.printDFS(tree);
-        System.out.println("\nBFS");
-        tree.printBFS();
+        for (List<Integer> innerList : SolutionI.combinationSum(nums, 8)) {
+            for (int number : innerList) {
+                System.out.print(number + " ");
+            }
+            System.out.println();
+        }
     }
 }
