@@ -907,10 +907,9 @@ public class SolutionI {
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<Integer> temp = new ArrayList<>();
         List<List<Integer>> res = new ArrayList<>();
-        combinationSumDFS(candidates, target,0,0, temp, res);
+        combinationSumDFS(candidates, target, 0, 0, temp, res);
         return res;
     }
-
     public static void combinationSumDFS(int[] candidates, int target, int sum, int index, List<Integer> temp,
                                          List<List<Integer>> res) {
         if (sum == target) {
@@ -925,5 +924,16 @@ public class SolutionI {
 
         temp.remove(temp.size() - 1);
         combinationSumDFS(candidates, target, sum, index + 1, temp, res);
+    }
+
+    // 44. Maximum Product of Two Elements in an Array
+    // https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/?envType=daily-question&envId=2023-12-12
+    public static int maxProductDAILYCHALLENEGE(int[] nums) {
+        int l = 0, max = 0;
+        for (int r = 1; r < nums.length; r++) {
+            max = Math.max(max, (nums[l] - 1) * (nums[r] - 1));
+            if (nums[l] < nums[r]) l = r;
+        }
+        return max;
     }
 }
