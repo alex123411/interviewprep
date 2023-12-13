@@ -975,11 +975,11 @@ public class SolutionI {
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
-        subSet(nums, 0, ans, list);
+        subsetsWithDupHelper(nums, 0, ans, list);
         return ans;
     }
 
-    public void subSet(
+    public void subsetsWithDupHelper(
             int[] nums,
             int idx,
             List<List<Integer>> ans,
@@ -990,10 +990,33 @@ public class SolutionI {
         for (int i = idx; i < nums.length; i++) {
             if (i > idx && nums[i] == nums[i - 1]) continue;
             list.add(nums[i]);
-            subSet(nums, i + 1, ans, list);
+            subsetsWithDupHelper(nums, i + 1, ans, list);
             list.remove(list.size() - 1);
         }
     }
 
+    // 47. Combination Sum II
+    // https://leetcode.com/problems/combination-sum-ii/
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>> res = new ArrayList<>();
+        combinationSum2Helper(candidates, target, 0, 0, new ArrayList<>(), res);
+        return res;
+    }
 
+    public void combinationSum2Helper(int[] candidates, int target, int sum, int index,
+                                      List<Integer> temp,
+                                      List<List<Integer>> res) {
+
+        if (sum == target) res.add(new ArrayList<>(temp));
+        if (sum > target || index >= candidates.length) return;
+
+        for (int i = index; i < candidates.length; i++) {
+            if (i > index && candidates[i] == candidates[i - 1]) continue;
+            temp.add(candidates[i]);
+            combinationSum2Helper(candidates, target,
+                    sum + candidates[i], i + 1, temp, res);
+            temp.remove(temp.size() - 1);
+        }
+    }
 }

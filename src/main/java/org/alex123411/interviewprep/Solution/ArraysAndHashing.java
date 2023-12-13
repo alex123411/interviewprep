@@ -1,6 +1,6 @@
-package org.alex123411.interviewprep;
+package org.alex123411.interviewprep.Solution;
 
-public class ArrayAndString {
+public class ArraysAndHashing {
 
     public void printArr(int[] arr) {
         for (int j : arr) {
