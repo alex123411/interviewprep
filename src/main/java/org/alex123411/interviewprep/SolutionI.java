@@ -6,7 +6,7 @@ public class SolutionI {
 
     // 1. Two Sum
     // https://leetcode.com/problems/two-sum/
-    public static int[] twoSum(int[] nums, int target) {
+    public int[] twoSum(int[] nums, int target) {
         int[] res = new int[2];
 
         Map<Integer, Integer> map = new HashMap<>();
@@ -27,7 +27,7 @@ public class SolutionI {
 
     // 2. Best Time to Buy and Sell Stock
     // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-    public static int maxProfit(int[] prices) {
+    public int maxProfit(int[] prices) {
         int maxProfit = 0;
         int minPrice = prices[0];
 
@@ -41,7 +41,7 @@ public class SolutionI {
 
     // 3. Contains Duplicate
     // https://leetcode.com/problems/contains-duplicate/
-    public static boolean containsDuplicate(int[] nums) {
+    public boolean containsDuplicate(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
 
         for (int num : nums) {
@@ -61,7 +61,7 @@ public class SolutionI {
     // 1 2 3 4 -> 24 12 8 6 (prefix x postfix)
     // 1 2 6 24 - prefix
     // 24 24 12 4 - postfix
-    public static int[] productExceptSelf(int[] nums) {
+    public int[] productExceptSelf(int[] nums) {
         int[] res = new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
             res[i] = 1;
@@ -83,7 +83,7 @@ public class SolutionI {
 
     // 5. Maximum Subarray
     // https://leetcode.com/problems/maximum-subarray/
-    public static int maxSubArray(int[] nums) {
+    public int maxSubArray(int[] nums) {
         int sum = 0;
         int maxSum = nums[0];
 
@@ -100,7 +100,7 @@ public class SolutionI {
     // https://leetcode.com/problems/maximum-product-subarray/
 
     // 2 3 -1 4 3
-    public static int maxProduct(int[] nums) {
+    public int maxProduct(int[] nums) {
         int left = 1, right = 1;
         int maxProd = nums[0];
 
@@ -125,7 +125,7 @@ public class SolutionI {
     // The answer will be nums[rot]
     // 3,4,5,1,2
     // 4,5,6,7,8,0,1,2
-    public static int findMin(int[] nums) {
+    public int findMin(int[] nums) {
         int left = 0, right = nums.length - 1;
         int mid;
 
@@ -144,7 +144,7 @@ public class SolutionI {
 
     // 9, 10, 11, 12, 13, 14, 4, 5, 7, 8
     // 12, 13, 4, 5, 7, 8, 9, 10, 11
-    public static int search(int[] nums, int target) {
+    public int search(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
         int mid;
 
@@ -167,7 +167,7 @@ public class SolutionI {
 
     // 9. 3Sum
     // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
-    public static int[] twoSumTwo(int[] numbers, int target) {
+    public int[] twoSumTwo(int[] numbers, int target) {
         int[] res = new int[2];
 
         int l = 0;
@@ -190,7 +190,7 @@ public class SolutionI {
 
     // 10. Two Sum II - Input Array is Sorted
     // https://leetcode.com/problems/3sum/
-    public static List<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
 
         Arrays.sort(nums);
@@ -223,7 +223,7 @@ public class SolutionI {
 
     // 11. Container With Most Water
     // https://leetcode.com/problems/container-with-most-water/
-    public static int maxArea(int[] height) {
+    public int maxArea(int[] height) {
         int l = 0, r = height.length - 1;
         int max = calcVolume(height, l, r);
 
@@ -236,7 +236,7 @@ public class SolutionI {
         return max;
     }
 
-    public static int calcVolume(int[] height, int l, int r) {
+    public int calcVolume(int[] height, int l, int r) {
         int tempHeight = Math.min(height[l], height[r]);
         int tempWidth = r - l;
 
@@ -245,7 +245,7 @@ public class SolutionI {
 
     // 12. Valid Anagram
     // https://leetcode.com/problems/valid-anagram/
-    public static boolean isAnagram(String s, String t) {
+    public boolean isAnagram(String s, String t) {
         int[] count = new int[26];
 
         for (char c : s.toCharArray()) {
@@ -265,7 +265,7 @@ public class SolutionI {
 
     // 13. Group Anagrams
     // https://leetcode.com/problems/group-anagrams/
-    public static List<List<String>> groupAnagrams(String[] strs) {
+    public List<List<String>> groupAnagrams(String[] strs) {
 
         Map<String, List<String>> map = new HashMap<>();
 
@@ -290,7 +290,7 @@ public class SolutionI {
 
     // 14. Valid Palindrome
     // https://leetcode.com/problems/valid-palindrome/
-    public static boolean isPalindrome(String s) {
+    public boolean isPalindrome(String s) {
         s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         char[] arr = s.toCharArray();
         int l = 0, r = arr.length - 1;
@@ -307,7 +307,7 @@ public class SolutionI {
 
     // 15. Trapping Rain Water
     // https://leetcode.com/problems/trapping-rain-water/
-    public static int trap(int[] height) {
+    public int trap(int[] height) {
         int res = 0;
 
         int l = 0, r = height.length - 1;
@@ -330,7 +330,7 @@ public class SolutionI {
 
     // 16. Valid Parentheses
     // https://leetcode.com/problems/valid-parentheses/
-    public static boolean isValid(String s) {
+    public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         char[] arr = s.toCharArray();
 
@@ -350,7 +350,7 @@ public class SolutionI {
 
     // 18. Evaluate Reverse Polish Notation
     // https://leetcode.com/problems/evaluate-reverse-polish-notation/
-    public static int evalRPN(String[] tokens) {
+    public int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<>();
 
         for (String s : tokens) {
@@ -397,13 +397,13 @@ public class SolutionI {
     // 2 [()() , (())]
     // 3 ["((()))","(()())","(())()","()(())","()()()"]
     // 4 ["
-    public static List<String> generateParenthesis(int n) {
+    public List<String> generateParenthesis(int n) {
         StringBuilder sb = new StringBuilder("(");
 
         return helperOne(1, 0, sb, n);
     }
 
-    public static List<String> helperOne(int open, int closed, StringBuilder s, int n) {
+    public List<String> helperOne(int open, int closed, StringBuilder s, int n) {
         List<String> list = new ArrayList<>();
 
         if (closed > open || open > n) return new ArrayList<>();
@@ -422,7 +422,7 @@ public class SolutionI {
 
     // 20. Daily Temperatures
     // https://leetcode.com/problems/daily-temperatures/
-    public static int[] dailyTemperatures(int[] temperatures) {
+    public int[] dailyTemperatures(int[] temperatures) {
         int[] res = new int[temperatures.length];
 
         Stack<Integer> stack = new Stack<>();
@@ -445,7 +445,7 @@ public class SolutionI {
 
     // 21. Car Fleet
     // https://leetcode.com/problems/car-fleet/
-    public static int carFleet(int target, int[] position, int[] speed) {
+    public int carFleet(int target, int[] position, int[] speed) {
         int res = 0;
 
         double[] timeArr = new double[target];
@@ -469,7 +469,7 @@ public class SolutionI {
 
     // 22. Largest Rectangle in Histogram
     // https://leetcode.com/problems/largest-rectangle-in-histogram/
-    public static int largestRectangleArea(int[] heights) {
+    public int largestRectangleArea(int[] heights) {
         int max = 0;
 
         // Brute force too slow O(n^2)
@@ -506,7 +506,7 @@ public class SolutionI {
 
     // 24. Search a 2D Matrix
     // https://leetcode.com/problems/search-a-2d-matrix/
-    public static boolean searchMatrix(int[][] matrix, int target) {
+    public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix[0].length; // length
         int n = matrix.length; // height
 
@@ -540,7 +540,7 @@ public class SolutionI {
 
     // 25. Koko Eating Bananas
     // https://leetcode.com/problems/koko-eating-bananas/
-    public static int minEatingSpeed(int[] piles, int h) {
+    public int minEatingSpeed(int[] piles, int h) {
         int max = piles[0];
 
         // Iterate through the array to find the maximum value
@@ -572,7 +572,7 @@ public class SolutionI {
 
     // Sliding Window
     // 26. https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
-    public static int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstring(String s) {
         if (s.length() == 1) return 1;
         int res = 0, l = 0, r = 0;
         Map<Character, Integer> map = new HashMap<>();
@@ -594,7 +594,7 @@ public class SolutionI {
 
     // 27. Longest Repeating Character Replacement
     // https://leetcode.com/problems/longest-repeating-character-replacement/
-    public static int characterReplacement(String s, int k) {
+    public int characterReplacement(String s, int k) {
         int[] counts = new int[26];
         char[] arr = s.toCharArray();
         int l = 0, max = 0;
@@ -618,7 +618,7 @@ public class SolutionI {
 
     // 28. Invert Binary Tree
     // https://leetcode.com/problems/invert-binary-tree/
-    public static TreeNode invertTree(TreeNode root) {
+    public TreeNode invertTree(TreeNode root) {
         if (root == null) return null;
         TreeNode left = root.left;
         root.left = root.right;
@@ -630,7 +630,7 @@ public class SolutionI {
 
     // 29. Maximum Depth of Binary Tree
     // https://leetcode.com/problems/maximum-depth-of-binary-tree/
-    public static int maxDepth(TreeNode root) {
+    public int maxDepth(TreeNode root) {
         if (root == null) return 0;
         int maxLeft = maxDepth(root.left);
         int maxRight = maxDepth(root.right);
@@ -639,14 +639,14 @@ public class SolutionI {
 
     // 30. Diameter of Binary Tree
     // https://leetcode.com/problems/diameter-of-binary-tree/
-    public static int diameterOfBinaryTree(TreeNode root) {
+    public int diameterOfBinaryTree(TreeNode root) {
         // Need to find deepest left + deepest right
         int[] diam = new int[1];
         helper(root, diam);
         return diam[0];
     }
 
-    public static int helper(TreeNode root, int[] diameter) {
+    public int helper(TreeNode root, int[] diameter) {
         if (root == null) return 0;
         int maxLeft = helper(root.left, diameter);
         int maxRight = helper(root.right, diameter);
@@ -654,7 +654,7 @@ public class SolutionI {
         return Math.max(maxLeft, maxRight) + 1;
     }
 
-    public static int helperDFS(TreeNode root, int[] res) {
+    public int helperDFS(TreeNode root, int[] res) {
         if (root == null) return 0;
         int maxLeft = helperDFS(root.left, res);
         int maxRight = helperDFS(root.right, res);
@@ -664,7 +664,7 @@ public class SolutionI {
 
     // 31. Balanced Binary Tree
     // https://leetcode.com/problems/balanced-binary-tree/
-    public static boolean isBalanced(TreeNode root) {
+    public boolean isBalanced(TreeNode root) {
         int[] res = new int[1];
         helperDFS(root, res);
         return res[0] == 0;
@@ -672,7 +672,7 @@ public class SolutionI {
 
     // 32. Same Tree
     // https://leetcode.com/problems/same-tree/
-    public static boolean isSameTree(TreeNode p, TreeNode q) {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;
         else if (p == null || q == null) return false;
         if (p.val != q.val) return false;
@@ -681,7 +681,7 @@ public class SolutionI {
 
     // 33. Subtree of Another Tree
     // https://leetcode.com/problems/subtree-of-another-tree/
-    public static boolean isSubtree(TreeNode root, TreeNode subRoot) {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         if (root == null || subRoot == null) return false;
         boolean res = false;
         Queue<TreeNode> q = new LinkedList<>();
@@ -699,7 +699,7 @@ public class SolutionI {
 
     // 34. Lowest Common Ancestor of a Binary Search Tree
     // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
-    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         TreeNode temp = root;
         while (temp != null) {
             if (p.val > temp.val && q.val > temp.val) temp = temp.right;
@@ -711,7 +711,7 @@ public class SolutionI {
 
     // 35. Binary Tree Level Order Traversal
     // https://leetcode.com/problems/binary-tree-level-order-traversal/
-    public static List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) return new ArrayList<>();
         List<List<Integer>> res = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
@@ -737,7 +737,7 @@ public class SolutionI {
 
     // 36. Binary Tree Right Side View
     // https://leetcode.com/problems/binary-tree-right-side-view/
-    public static List<Integer> rightSideView(TreeNode root) {
+    public List<Integer> rightSideView(TreeNode root) {
         if (root == null) return new ArrayList<>();
         List<Integer> res = new ArrayList<>();
 
@@ -762,7 +762,7 @@ public class SolutionI {
 
     // 37. Count Good Nodes in Binary Tree
     // https://leetcode.com/problems/count-good-nodes-in-binary-tree/
-    public static int goodNodes(TreeNode root) {
+    public int goodNodes(TreeNode root) {
         if (root == null) return 0;
         int res = 0;
 
@@ -771,7 +771,7 @@ public class SolutionI {
 
     // 38. Reverse Linked List
     // https://leetcode.com/problems/reverse-linked-list/
-    public static ListNode reverseList(ListNode head) {
+    public ListNode reverseList(ListNode head) {
         if (head == null) return null;
 
         ListNode reversed = new ListNode(head.val);
@@ -788,7 +788,7 @@ public class SolutionI {
 
     // 39. Merge Two Sorted Lists
     // https://leetcode.com/problems/merge-two-sorted-lists/
-    public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         if (list1 == null) return list2;
         if (list2 == null) return list1;
 
@@ -814,7 +814,7 @@ public class SolutionI {
 
     // 40. Reorder List
     // https://leetcode.com/problems/reorder-list/
-    public static void reorderList(ListNode head) {
+    public void reorderList(ListNode head) {
         if (head == null) return;
 
         ListNode reversed = reverseList(head);
@@ -853,7 +853,7 @@ public class SolutionI {
 
     // 41. Remove Nth Node From End of List
     // https://leetcode.com/problems/remove-nth-node-from-end-of-list/
-    public static ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null) return null;
         if (n == 1 && head.next == null) return null;
 
@@ -883,14 +883,14 @@ public class SolutionI {
 
     // 42. Subsets
     // https://leetcode.com/problems/subsets/
-    public static List<List<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> subsets(int[] nums) {
         List<Integer> temp = new ArrayList<>();
         List<List<Integer>> res = new ArrayList<>();
         subsetsDFS(nums, 0, temp, res);
         return res;
     }
 
-    public static void subsetsDFS(int[] nums, int index, List<Integer> temp, List<List<Integer>> res) {
+    public void subsetsDFS(int[] nums, int index, List<Integer> temp, List<List<Integer>> res) {
         if (index >= nums.length) {
             res.add(new ArrayList<>(temp));
             return;
@@ -904,14 +904,15 @@ public class SolutionI {
 
     // 43. Combination Sum
     // https://leetcode.com/problems/combination-sum/
-    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<Integer> temp = new ArrayList<>();
         List<List<Integer>> res = new ArrayList<>();
         combinationSumDFS(candidates, target, 0, 0, temp, res);
         return res;
     }
-    public static void combinationSumDFS(int[] candidates, int target, int sum, int index, List<Integer> temp,
-                                         List<List<Integer>> res) {
+
+    public void combinationSumDFS(int[] candidates, int target, int sum, int index, List<Integer> temp,
+                                  List<List<Integer>> res) {
         if (sum == target) {
             res.add(new ArrayList<>(temp));
             return;
@@ -928,7 +929,7 @@ public class SolutionI {
 
     // 44. Maximum Product of Two Elements in an Array
     // https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/?envType=daily-question&envId=2023-12-12
-    public static int maxProductDAILYCHALLENEGE(int[] nums) {
+    public int maxProductDAILYCHALLENEGE(int[] nums) {
         int l = 0, max = 0;
         for (int r = 1; r < nums.length; r++) {
             max = Math.max(max, (nums[l] - 1) * (nums[r] - 1));
@@ -936,4 +937,63 @@ public class SolutionI {
         }
         return max;
     }
+
+    // 45. Permutations
+    // https://leetcode.com/problems/permutations/
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+
+        permuteHelper(nums, nums.length, current, res);
+        return res;
+    }
+
+    public void permuteHelper(int[] nums, int len, List<Integer> current,
+                              List<List<Integer>> res) {
+        if (current.size() == len) {
+            res.add(new ArrayList<>(current));
+            return;
+        }
+
+        int[] copy = nums.clone();
+
+        for (int i = 0; i < len; i++) {
+            if (copy[i] == -11) continue;
+            int temp = copy[i];
+
+            current.add(temp);
+            copy[i] = -11;
+            permuteHelper(copy, len, current, res);
+            copy[i] = temp;
+            current.remove(current.size() - 1);
+        }
+    }
+
+    // 46. Subsets II
+    // https://leetcode.com/problems/subsets-ii/
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        subSet(nums, 0, ans, list);
+        return ans;
+    }
+
+    public void subSet(
+            int[] nums,
+            int idx,
+            List<List<Integer>> ans,
+            List<Integer> list
+    ) {
+        ans.add(new ArrayList<>(list));
+
+        for (int i = idx; i < nums.length; i++) {
+            if (i > idx && nums[i] == nums[i - 1]) continue;
+            list.add(nums[i]);
+            subSet(nums, i + 1, ans, list);
+            list.remove(list.size() - 1);
+        }
+    }
+
+
 }

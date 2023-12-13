@@ -1,5 +1,6 @@
 package org.alex123411.interviewprep;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -157,11 +158,13 @@ public class Main {
 
         int[] nums = new int[]{2, 3, 6, 7};
 
-        for (List<Integer> innerList : SolutionI.combinationSum(nums, 8)) {
-            for (int number : innerList) {
-                System.out.print(number + " ");
-            }
-            System.out.println();
-        }
+//        for (List<Integer> innerList : SolutionI.combinationSum(nums, 8)) {
+//            for (int number : innerList) {
+//                System.out.print(number + " ");
+//            }
+//            System.out.println();
+//        }
+
+        System.out.println(Arrays.toString(nums));
     }
 }
