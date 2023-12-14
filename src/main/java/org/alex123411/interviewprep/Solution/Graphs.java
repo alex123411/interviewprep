@@ -1,24 +1,12 @@
 package org.alex123411.interviewprep.Solution;
 
+
+import org.alex123411.interviewprep.Solution.Structures.Node;
+
+import java.util.LinkedList;
+import java.util.*;
+
 public class Graphs {
-
-    public void dfs(int[][] graph, int i, int j) {
-        // i -> rows
-        // j -> cols
-        if (i < 0 || i > graph.length ||
-                j < 0 || j > graph[0].length) return;
-
-        // can add some condition hear to return whenever wae want;
-
-        dfs(graph,i,j+1);
-        dfs(graph,i,j-1);
-        dfs(graph,i-1,j);
-        dfs(graph,i+1,j);
-    }
-
-    public void bfs(int[][] graph, int i, int j) {
-
-    }
 
     // 200. Number of Islands
     // https://leetcode.com/problems/number-of-islands/
@@ -54,4 +42,79 @@ public class Graphs {
         numIslandsDFS(grid, i, j - 1);
     }
 
+    // 133. Clone Graph
+    // https://leetcode.com/problems/clone-graph/
+    public Node cloneGraph(Node node) {
+        if (node == null) return null;
+
+        Node res = new Node(node.val);
+        Map<Integer, Node> map = new HashMap<>();
+
+        cloneGraphBFS(node, res, map);
+
+        return res;
+    }
+
+    public void cloneGraphBFS(Node node, Node res, Map<Integer, Node> map) {
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(node);
+
+        map.put(res.val, res);
+
+        while (!queue.isEmpty()) {
+
+            Node current = queue.poll();
+            res = map.get(current.val);
+
+            for (Node n : current.neighbors) {
+                if (!map.containsKey(n.val)) {
+                    Node newNode = new Node(n.val, new ArrayList<>());
+                    map.put(n.val, newNode);
+                    queue.add(n);
+                }
+                res.neighbors.add(map.get(n.val));
+            }
+        }
+    }
+
+    // 695. Max Area of Island
+    // https://leetcode.com/problems/max-area-of-island/
+    public int maxAreaOfIsland(int[][] grid) {
+        if (grid == null) return 0;
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        int max = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == 1) {
+                    max = Math.max(max, maxAreaOfIsland(grid, i, j));
+                }
+            }
+        }
+        return max;
+    }
+
+    public int maxAreaOfIsland(int[][] grid, int i, int j) {
+
+        if (i < 0 || j < 0 || i > grid.length - 1 || j > grid[0].length - 1 || grid[i][j] == 0)
+            return 0;
+
+        grid[i][j] = 0;
+
+
+        return (1 + maxAreaOfIsland(grid, i + 1, j) +
+                maxAreaOfIsland(grid, i - 1, j) +
+                maxAreaOfIsland(grid, i, j + 1) +
+                maxAreaOfIsland(grid, i, j - 1));
+    }
+
+    // 417. Pacific Atlantic Water Flow
+    // https://leetcode.com/problems/pacific-atlantic-water-flow/
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        return res;
+    }
 }
