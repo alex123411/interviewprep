@@ -1,4 +1,4 @@
-package org.alex123411.interviewprep;
+package org.alex123411.interviewprep.Solution.Structures;
 
 import java.util.LinkedList;
 import java.util.Queue;
