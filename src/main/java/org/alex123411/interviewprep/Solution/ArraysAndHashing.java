@@ -112,4 +112,98 @@ public class ArraysAndHashing {
         }
         return max;
     }
+
+    // 6. Zigzag Conversion
+    // https://leetcode.com/problems/zigzag-conversion/
+    public String convert(String s, int numRows) {
+        List<StringBuilder> lists = new ArrayList<>();
+        char[] chars = s.toCharArray();
+
+        for (int i = 0; i < numRows; i++) {
+            lists.add(new StringBuilder());
+        }
+
+        int i = 0;
+        while (i < chars.length) {
+            int j = 0;
+
+            // first we go down
+            while (j < numRows && i < chars.length) {
+                lists.get(j).append(chars[i]);
+                i++;
+                j++;
+            }
+
+            j = numRows - 2;
+            // second we go on a zigzag from n - 1 to 1
+            while (j > 0 && i < chars.length) {
+                lists.get(j).append(chars[i]);
+                i++;
+                j--;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (StringBuilder stringbuilder : lists) {
+            sb.append(stringbuilder);
+        }
+
+        return sb.toString();
+    }
+
+    // 347. Top K Frequent Elements
+    // https://leetcode.com/problems/top-k-frequent-elements/
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> counts = new HashMap<>();
+        List<Integer>[] bucket = new ArrayList[nums.length + 1];
+
+        for (int num : nums)
+            counts.merge(num, 1, Integer::sum);
+
+        for (int key : counts.keySet()) {
+            int freq = counts.get(key);
+            if (bucket[freq] == null)
+                bucket[freq] = new ArrayList<>();
+            bucket[freq].add(key);
+        }
+
+        int[] res = new int[k];
+        int ind = 0;
+        for (int i = bucket.length; i > 0; i--) {
+            if (bucket[i] == null) continue;
+            for (int x : bucket[i]) {
+                res[ind] = x;
+                if (ind == k - 1) return res;
+                ind++;
+            }
+        }
+        return res;
+    }
+
+    // 238. Product of Array Except Self
+    // https://leetcode.com/problems/product-of-array-except-self/
+    /*
+        [1,2,3,4]
+        [1,2,6,24] -> prefix
+        [24,24,12,4] <- postfix
+        [24,12,8,6] - res (prefix*postfix)
+     */
+    public int[] productExceptSelf(int[] nums) {
+        int prefix = 1, postfix = 1;
+        int[] copy = nums.clone();
+
+        for (int i = 1; i < nums.length; i++) {
+            prefix *= nums[i - 1];
+            copy[i] = prefix;
+            System.out.println(prefix);
+        }
+
+        for (int i = 1; i < nums.length; i++) {
+            postfix *=  copy[nums.length - i];
+            nums[nums.length - i - 1] = postfix;
+        }
+
+        return nums;
+    }
 }
