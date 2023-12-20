@@ -1,4 +1,4 @@
-package org.alex123411.interviewprep.Solution;
+package org.alex123411.interviewprep.Solution.NeetCodeHundredFifty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
