@@ -138,4 +138,13 @@ public class Easy {
 
         return Math.min(x, y);
     }
+
+    // 455. Assign Cookies
+    // https://leetcode.com/problems/assign-cookies/?envType=daily-question&envId=2024-01-01
+    public int findContentChildren(int[] g, int[] s) {
+        int res = 0;
+
+        
+        return res;
+    }
 }
