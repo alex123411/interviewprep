@@ -1,6 +1,7 @@
 package org.alex123411.interviewprep.Solution.DailyTask;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -144,7 +145,18 @@ public class Easy {
     public int findContentChildren(int[] g, int[] s) {
         int res = 0;
 
-        
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int i = 0, j = 0;
+
+        while (i < g.length && j < s.length) {
+            if (s[j] >= g[i]) {
+                res++;
+                i++;
+            }
+            j++;
+        }
         return res;
     }
 }
