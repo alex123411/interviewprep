@@ -1,6 +1,8 @@
 package org.alex123411.interviewprep.Solution.DailyTask;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Medium {
     // 91. Decode Ways
@@ -52,5 +54,31 @@ public class Medium {
         return res;
     }
 
-    //
+    // 2610. Convert an Array Into a 2D Array With Conditions
+    // https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/?envType=daily-question&envId=2024-01-02
+
+
+    // 2125. Number of Laser Beams in a Bank
+    // https://leetcode.com/problems/number-of-laser-beams-in-a-bank/?envType=daily-question&envId=2024-01-03
+    public int numberOfBeams(String[] bank) {
+        int res = 0;
+
+        int prev = 0;
+        int temp = 0;
+
+        for (int i = 0; i < bank.length; i++) {
+            if (i == 0) {
+                for (char c : bank[i].toCharArray()) if (c == '1') prev++;
+            } else {
+                for (char c : bank[i].toCharArray()) if (c == '1') temp++;
+                if (temp != 0) {
+                    res += prev * temp;
+                    prev = temp;
+                    temp = 0;
+                }
+            }
+        }
+
+        return res;
+    }
 }
