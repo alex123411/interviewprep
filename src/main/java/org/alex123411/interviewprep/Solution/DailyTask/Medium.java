@@ -1,8 +1,6 @@
 package org.alex123411.interviewprep.Solution.DailyTask;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Medium {
     // 91. Decode Ways
@@ -75,6 +73,31 @@ public class Medium {
                     res += prev * temp;
                     prev = temp;
                     temp = 0;
+                }
+            }
+        }
+
+        return res;
+    }
+
+    // 2870. Minimum Number of Operations to Make Array Empty
+    // https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/?envType=daily-question&envId=2024-01-04
+    public int minOperations(int[] nums) {
+        int res = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : nums) map.put(n, map.getOrDefault(n, 0) + 1);
+
+        for (int n : map.values()) {
+            if(n == 1) return -1;
+            if (n % 3 == 0) {
+                res += n / 3;
+            } else {
+                res += n / 3;
+                if (n % 3 % 2 != 0 && (n % 3 + 3) % 2 != 0) return -1;
+                if (n % 3 % 2 == 0) res += n % 3 / 2;
+                if ((n % 3 + 3) % 2 == 0) {
+                    res = res - 1;
+                    res += (n % 3 + 3) / 2;
                 }
             }
         }
