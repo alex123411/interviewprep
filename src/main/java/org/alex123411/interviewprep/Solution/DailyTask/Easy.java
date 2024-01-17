@@ -1,10 +1,7 @@
 package org.alex123411.interviewprep.Solution.DailyTask;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Easy {
     // 2706. Buy Two Chocolates
@@ -158,5 +155,21 @@ public class Easy {
             j++;
         }
         return res;
+    }
+
+    // 1207. Unique Number of Occurrences
+    // https://leetcode.com/problems/unique-number-of-occurrences/?envType=daily-question&envId=2024-01-17
+    public boolean uniqueOccurrences(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i : arr) map.put(i, map.getOrDefault(i, 0) + 1);
+
+        Set<Integer> set = new HashSet<>();
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (set.contains(entry.getValue())) return false;
+            set.add(entry.getValue());
+        }
+
+        return true;
     }
 }

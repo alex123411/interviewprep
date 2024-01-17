@@ -200,10 +200,35 @@ public class ArraysAndHashing {
         }
 
         for (int i = 1; i < nums.length; i++) {
-            postfix *=  copy[nums.length - i];
+            postfix *= copy[nums.length - i];
             nums[nums.length - i - 1] = postfix;
         }
 
         return nums;
+    }
+
+    // 128. Longest Consecutive Sequence
+    // https://leetcode.com/problems/longest-consecutive-sequence/
+    public int longestConsecutive(int[] nums) {
+        if (nums.length == 0) return 0;
+
+        Set<Integer> set = new HashSet<>();
+        for (int i : nums) set.add(i);
+
+        int res = 1;
+        for (int num : nums) {
+            if (!set.contains(num - 1)) {
+                int temp = num;
+                int len = 1;
+                while (set.contains(temp + 1)) {
+                    temp++;
+                    len++;
+                }
+                res = Math.max(res, len);
+                if(len > nums.length/2) break;
+            }
+        }
+
+        return res;
     }
 }
