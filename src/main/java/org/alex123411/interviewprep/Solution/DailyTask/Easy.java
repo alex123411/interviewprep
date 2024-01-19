@@ -158,7 +158,7 @@ public class Easy {
     }
 
     // 1207. Unique Number of Occurrences
-    // https://leetcode.com/problems/unique-number-of-occurrences/?envType=daily-question&envId=2024-01-17
+    // https://leetcode.com/problems/unique-number-of-occurrences
     public boolean uniqueOccurrences(int[] arr) {
         Map<Integer, Integer> map = new HashMap<>();
 
@@ -172,4 +172,23 @@ public class Easy {
 
         return true;
     }
+
+    // 70. Climbing Stairs
+    // https://leetcode.com/problems/climbing-stairs
+    public int climbStairs(int n) {
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, -1);
+        return climbStairsHelper(dp, 0, n);
+    }
+
+    public int climbStairsHelper(int[] dp, int i, int n) {
+        if (i > n) return 0;
+        if (i == n) return 1;
+        if (dp[i] != -1) return dp[i];
+
+        dp[i] = climbStairsHelper(dp, i + 1, n) + climbStairsHelper(dp, i + 2, n);
+
+        return dp[i];
+    }
+
 }
