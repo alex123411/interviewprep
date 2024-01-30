@@ -137,4 +137,38 @@ public class Medium {
         if (j != 0) minFallingPathSumHelper(matrix, i + 1, j - 1, currentSum, memo, res);
         if (j != matrix.length - 1) minFallingPathSumHelper(matrix, i + 1, j + 1, currentSum, memo, res);
     }
+
+    // 198. House Robber
+    // https://leetcode.com/problems/house-robber/
+    public int rob(int[] nums) {
+
+        return 0;
+    }
+
+    // https://leetcode.com/problems/group-anagrams/
+    // 49. Group Anagrams
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+
+        for (String str : strs) {
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String sortedStr = new String(chars);
+
+            if (!map.containsKey(sortedStr)) {
+                map.put(sortedStr, new ArrayList<>());
+            }
+
+            map.get(sortedStr).add(str);
+        }
+
+        return new ArrayList<>(map.values());
+    }
+
+    public boolean isAnagram(String str, int[] counts) {
+        for (char c : str.toCharArray()) counts[c - 'a']--;
+        for (int i : counts) if (i != 0) return false;
+        return true;
+    }
+
 }

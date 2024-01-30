@@ -2,19 +2,20 @@ package org.alex123411.interviewprep;
 
 import org.alex123411.interviewprep.Solution.DailyTask.Easy;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Set<Easy.Point> set = new HashSet<>();
+        System.out.println(1/2);
 
-        int x = 0;
-        int y = 0;
-        set.add(new Easy.Point(x, y));
-        set.add(new Easy.Point(0, 0));
-        System.out.println(set.contains(new Easy.Point(0, 0)));
+
+//        Set<Easy.Point> set = new HashSet<>();
+//
+//        int x = 0;
+//        int y = 0;
+//        set.add(new Easy.Point(x, y));
+//        set.add(new Easy.Point(0, 0));
+//        System.out.println(set.contains(new Easy.Point(0, 0)));
 
     }
 

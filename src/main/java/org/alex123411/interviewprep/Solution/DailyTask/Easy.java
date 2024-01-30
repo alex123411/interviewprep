@@ -191,4 +191,65 @@ public class Easy {
         return dp[i];
     }
 
+    // 35. Search Insert Position
+    // https://leetcode.com/problems/search-insert-position/
+    public int searchInsert(int[] nums, int target) {
+        if (nums[0] > target) return 0;
+        if (nums[nums.length - 1] < target) return nums.length;
+
+        int l = 0, r = nums.length - 1;
+        int mid;
+
+        while (l <= r) {
+            mid = (l + r) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] > target) r = mid - 1;
+            if (nums[mid] < target) l = mid + 1;
+        }
+
+        return (l + r) / 2 + 1;
+    }
+
+    // 58. Length of Last Word
+    // https://leetcode.com/problems/length-of-last-word/
+    public int lengthOfLastWord(String s) {
+        char[] arr = s.toCharArray();
+        int res = 0;
+        int i = arr.length - 1;
+        while (i >= 0 && arr[i] == ' ') i--;
+        while (i >= 0 && arr[i] != ' ') {
+            res++;
+            i--;
+        }
+        return res;
+    }
+
+    // 66. Plus One
+    // https://leetcode.com/problems/plus-one/
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] != 9) {
+                digits[i]++;
+                break;
+            }
+            if (digits[i] == 9) {
+                while (i >= 0 && digits[i] == 9) {
+                    digits[i] = 0;
+                    i--;
+                }
+                if (i >= 0) {
+                    digits[i]++;
+                    break;
+                }
+                else {
+                    int[] res = new int[digits.length + 1];
+                    Arrays.fill(res, 0);
+                    res[0] = 1;
+                    return res;
+                }
+            }
+        }
+        return digits;
+    }
+
 }
