@@ -1,8 +1,25 @@
 package org.alex123411.interviewprep.Solution.DailyTask;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Medium {
+    public int maxWidthOfVerticalArea(int[][] points) {
+        int res = 0;
+
+        int[] axis = new int[points.length];
+        for (int i = 0; i < points.length; i++) axis[i] = points[i][0];
+
+        Arrays.sort(axis);
+
+        for (int i = 1; i < points.length; i++) {
+            res = Math.max(res, axis[i] - axis[i - 1]);
+        }
+        return res;
+    }
+
     // 91. Decode Ways
     // https://leetcode.com/problems/decode-ways/?envType=daily-question&envId=2023-12-25
     public int numDecodings(String s) {
@@ -138,37 +155,72 @@ public class Medium {
         if (j != matrix.length - 1) minFallingPathSumHelper(matrix, i + 1, j + 1, currentSum, memo, res);
     }
 
-    // 198. House Robber
-    // https://leetcode.com/problems/house-robber/
-    public int rob(int[] nums) {
+    // 1239. Maximum Length of a Concatenated String with Unique Characters
+    // https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
+    public int maxLength(List<String> arr) {
+        int[] res = new int[1];
 
-        return 0;
+        maxLengthHelper(arr, 0, new StringBuilder(), res);
+        return res[0];
     }
 
-    // https://leetcode.com/problems/group-anagrams/
-    // 49. Group Anagrams
-    public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> map = new HashMap<>();
-
-        for (String str : strs) {
-            char[] chars = str.toCharArray();
-            Arrays.sort(chars);
-            String sortedStr = new String(chars);
-
-            if (!map.containsKey(sortedStr)) {
-                map.put(sortedStr, new ArrayList<>());
-            }
-
-            map.get(sortedStr).add(str);
+    public void maxLengthHelper(List<String> arr, int index, StringBuilder current, int[] res) {
+        if (index >= arr.size()) return;
+        res[0] = Math.max(res[0], current.length());
+        int[] chars = new int[26];
+        for (char c : current.toString().toCharArray()) chars[c - 'a'] = 1;
+        boolean contains = false;
+        for (char c : arr.get(index).toCharArray()) {
+            contains = chars[c - 'a'] != 0;
+            if (contains) break;
         }
+        if (contains) return;
 
-        return new ArrayList<>(map.values());
+        for (int i = index; i < arr.size(); i++) {
+            current.append(arr.get(index));
+            maxLengthHelper(arr, index + 1, current, res);
+        }
     }
 
-    public boolean isAnagram(String str, int[] counts) {
-        for (char c : str.toCharArray()) counts[c - 'a']--;
-        for (int i : counts) if (i != 0) return false;
-        return true;
+    public int maxWidthOfVerticalArea(int[][] points) {
+        int res = 0;
+
+        int[] axis = new int[points.length];
+        for (int i = 0; i < points.length; i++) axis[i] = points[i][0];
+
+        Arrays.sort(axis);
+
+        for (int i = 1; i < points.length; i++) {
+            res = Math.max(res, axis[i] - axis[i - 1]);
+        }
+        return res;
+    }
+
+    // 1239. Maximum Length of a Concatenated String with Unique Characters
+    // https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
+    public int maxLength(List<String> arr) {
+        int[] res = new int[1];
+
+        maxLengthHelper(arr, 0, new StringBuilder(), res);
+        return res[0];
+    }
+
+    public void maxLengthHelper(List<String> arr, int index, StringBuilder current, int[] res) {
+        if (index >= arr.size()) return;
+        res[0] = Math.max(res[0], current.length());
+        int[] chars = new int[26];
+        for (char c : current.toString().toCharArray()) chars[c - 'a'] = 1;
+        boolean contains = false;
+        for (char c : arr.get(index).toCharArray()) {
+            contains = chars[c - 'a'] != 0;
+            if (contains) break;
+        }
+        if (contains) return;
+
+        for (int i = index; i < arr.size(); i++) {
+            current.append(arr.get(index));
+            maxLengthHelper(arr, index + 1, current, res);
+        }
     }
 
 }
