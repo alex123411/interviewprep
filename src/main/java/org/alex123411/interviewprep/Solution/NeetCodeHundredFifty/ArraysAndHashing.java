@@ -163,8 +163,7 @@ public class ArraysAndHashing {
 
         for (int key : counts.keySet()) {
             int freq = counts.get(key);
-            if (bucket[freq] == null)
-                bucket[freq] = new ArrayList<>();
+            if (bucket[freq] == null) bucket[freq] = new ArrayList<>();
             bucket[freq].add(key);
         }
 
@@ -225,10 +224,70 @@ public class ArraysAndHashing {
                     len++;
                 }
                 res = Math.max(res, len);
-                if(len > nums.length/2) break;
+                if (len > nums.length / 2) break;
             }
         }
 
         return res;
+    }
+
+    // 36. Valid Sudoku
+    // https://leetcode.com/problems/valid-sudoku/
+    public boolean isValidSudoku(char[][] board) {
+        // My Solution
+        int i = 0, j = 0, n = 0;
+        Set<Character> set = new HashSet<>();
+        while (i < 9 && j < 9) {
+            // Validating row
+            set = new HashSet<>();
+            n = 0;
+            while (n < 9) {
+                char c = board[i][n];
+                if (set.contains(c)) return false;
+                if (c != '.') set.add(c);
+                n++;
+            }
+            // Validating col
+            set = new HashSet<>();
+            n = 0;
+            while (n < 9) {
+                char c = board[n][j];
+                if (set.contains(c)) return false;
+                if (c != '.') set.add(c);
+                n++;
+            }
+            i++;
+            j++;
+        }
+
+        // Validating  blocks
+        i = 0;
+        j = 0;
+        while (j < 9) {
+            set = new HashSet<>();
+            for (int k = i; k < i + 3; k++) {
+                for (int l = j; l < j + 3; l++) {
+                    char c = board[k][l];
+                    if (set.contains(c)) return false;
+                    if (c != '.') set.add(c);
+                }
+            }
+            i += 3;
+            if (i >= 9) {
+                i = 0;
+                j += 3;
+            }
+        }
+        return true;
+    }
+
+    // 271. String Encode and Decode
+    // https://leetcode.com/problems/encode-and-decode-strings/
+    public String encode(List<String> strs) {
+        return "";
+    }
+
+    public List<String> decode(String str) {
+        return new ArrayList<>();
     }
 }

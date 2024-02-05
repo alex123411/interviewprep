@@ -240,8 +240,7 @@ public class Easy {
                 if (i >= 0) {
                     digits[i]++;
                     break;
-                }
-                else {
+                } else {
                     int[] res = new int[digits.length + 1];
                     Arrays.fill(res, 0);
                     res[0] = 1;
@@ -252,4 +251,30 @@ public class Easy {
         return digits;
     }
 
+    // 121. Best Time to Buy and Sell Stock
+    // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+    public int maxProfit(int[] prices) {
+        if (prices.length == 1) return 0;
+        int l = prices[0];
+        int max = 0;
+
+        for (int price : prices) {
+            if (l >= price) l = price;
+            max = Math.max(price - l, max);
+        }
+
+        return max;
+    }
+
+    // 387. First Unique Character in a String
+    // https://leetcode.com/problems/first-unique-character-in-a-string
+    public int firstUniqChar(String s) {
+        char[] chars = new char[26];
+        char[] arr = s.toCharArray();
+        for (char c : arr) chars[c - 'a']++;
+        for (int i = 0; i < arr.length; i++) if (chars[arr[i] - 'a'] == 1) return i;
+        return -1;
+    }
+
 }
+
