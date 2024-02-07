@@ -1,9 +1,6 @@
 package org.alex123411.interviewprep.Solution.DailyTask;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Medium {
     public int maxWidthOfVerticalArea(int[][] points) {
@@ -180,5 +177,27 @@ public class Medium {
             current.append(arr.get(index));
             maxLengthHelper(arr, index + 1, current, res);
         }
+    }
+
+    // 451. Sort Characters By Frequency
+    // https://leetcode.com/problems/sort-characters-by-frequency
+    public String frequencySort(String s) {
+        int[][] map = new int[128][2];
+
+        for (int i = 0; i < 128; i++)
+            map[i][0] = i;
+
+        for (char c : s.toCharArray())
+            map[c][1]++;
+
+        Arrays.sort(map, (a, b) -> Integer.compare(b[1], a[1]));
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 128; i++)
+            while (map[i][1]-- > 0)
+                sb.append((char) map[i][0]);
+
+        return sb.toString();
     }
 }
