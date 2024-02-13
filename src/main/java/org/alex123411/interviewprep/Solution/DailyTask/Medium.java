@@ -200,4 +200,42 @@ public class Medium {
 
         return sb.toString();
     }
+
+    // 279. Perfect Squares
+    // https://leetcode.com/problems/perfect-squares
+    public int numSquares(int n) {
+        int[] res = new int[1];
+        res[0] = n;
+
+        List<Integer> list = new ArrayList<>();
+        for(int i = 1; i*i < n; i++){
+            list.add(i*i);
+        }
+
+        numSquares(n, res, 0, 0, 0, list);
+
+        return res[0];
+    }
+
+    public void numSquares(int n, int[] res, int current, int step, int index, List<Integer> perfectSquares) {
+        if (step > res[0]) return;
+        if (current > n) return;
+        if (current == n) {
+            res[0] = step;
+            return;
+        }
+
+        for (int i = index; i < perfectSquares.size(); i++) {
+            int temp = perfectSquares.get(i);
+            if (n - temp >= 0) {
+                numSquares(n, res, current + temp, step + 1, i, perfectSquares);
+            }
+        }
+    }
+
+    public boolean isPerfectSquare(int n) {
+        double x = Math.sqrt(n);
+        double y = Math.floor(Math.sqrt(n));
+        return x == y;
+    }
 }

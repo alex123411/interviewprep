@@ -1,22 +1,18 @@
 package org.alex123411.interviewprep;
 
 import org.alex123411.interviewprep.Solution.DailyTask.Easy;
+import org.alex123411.interviewprep.Solution.DailyTask.Medium;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(1/2);
+        Medium s = new Medium();
 
-
-//        Set<Easy.Point> set = new HashSet<>();
-//
-//        int x = 0;
-//        int y = 0;
-//        set.add(new Easy.Point(x, y));
-//        set.add(new Easy.Point(0, 0));
-//        System.out.println(set.contains(new Easy.Point(0, 0)));
-
+        long timeStart = System.currentTimeMillis();
+        System.out.println(s.numSquares(12));
+        long timeEnd = System.currentTimeMillis();
+        System.out.println("Time: " + (timeEnd - timeStart) + " milliseconds");
     }
 
     public int strStr(String haystack, String needle) {
