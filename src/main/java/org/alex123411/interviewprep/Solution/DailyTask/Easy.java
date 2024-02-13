@@ -334,7 +334,7 @@ public class Easy {
     }
     public String firstPalindrome(String[] words) {
         for (String s : words) {
-            if(isPalindrome(s)) return s;
+            if(firstPalindromeHelper(s)) return s;
         }
         return "";
     }
