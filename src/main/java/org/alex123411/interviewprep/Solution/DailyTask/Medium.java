@@ -208,8 +208,8 @@ public class Medium {
         res[0] = n;
 
         List<Integer> list = new ArrayList<>();
-        for(int i = 1; i*i < n; i++){
-            list.add(i*i);
+        for (int i = 1; i * i < n; i++) {
+            list.add(i * i);
         }
 
         numSquares(n, res, 0, 0, 0, list);
@@ -237,5 +237,26 @@ public class Medium {
         double x = Math.sqrt(n);
         double y = Math.floor(Math.sqrt(n));
         return x == y;
+    }
+
+    // 2149. Rearrange Array Elements by Sign
+    // https://leetcode.com/problems/rearrange-array-elements-by-sign
+    public int[] rearrangeArray(int[] nums) {
+        int[] res = new int[nums.length];
+        int i = 0, j = 0, index = 0;
+
+        while (index < nums.length) {
+            if (index % 2 == 0) {
+                while (nums[i] < 0) i++;
+                res[index] = nums[i];
+                i++;
+            } else {
+                while (nums[j] > 0) j++;
+                res[index] = nums[j];
+                j++;
+            }
+            index++;
+        }
+        return res;
     }
 }
