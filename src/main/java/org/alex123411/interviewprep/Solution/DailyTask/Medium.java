@@ -1,5 +1,6 @@
 package org.alex123411.interviewprep.Solution.DailyTask;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Medium {
@@ -258,5 +259,33 @@ public class Medium {
             index++;
         }
         return res;
+    }
+
+    // 1481. Least Number of Unique Integers after K Removals
+    // https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals
+    public int findLeastNumOfUniqueInts(int[] arr, int k) {
+
+        // Getting counts into the HashMap
+        Map<Integer, Integer> counts = new HashMap<>();
+        for (int i : arr) counts.put(i, counts.getOrDefault(i, 0) + 1);
+
+        // Sorting counts
+        List<Integer> list = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) list.add(entry.getValue());
+
+        Collections.sort(list);
+
+        int reduced = 0;
+        for (int i : list) {
+            k -= i;
+            if (k >= 0) {
+                reduced++;
+            }
+            if (k <= 0) {
+                break;
+            }
+        }
+
+        return list.size() - reduced;
     }
 }
